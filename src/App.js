@@ -14,13 +14,25 @@ const App = () => {
           <Route path="/results" element={<ResultsPage />} />
         </Routes>
       </Router>
-      <p>Learn React</p> {/* Add this line!!! sync with other file*/}
+      <Footer />
     </BackgroundContainer>
   );
 };
 
 const BackgroundContainer = ({ children }) => {
   return <div style={{ backgroundColor: 'green' }}>{children}</div>;
+};
+
+const Footer = () => {
+  return (
+    <div style={{ backgroundColor: 'gray', padding: '20px', textAlign: 'center', color: 'white' }}>
+      <p>
+      <p>To discuss work possibilities contact me:</p>
+      <p>  malachikakembo@gmail.com </p>
+      <p>   +44 737 8143 599 </p>
+      </p>
+    </div>
+  );
 };
 
 export default App;

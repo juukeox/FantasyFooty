@@ -6,19 +6,9 @@ import { read, utils } from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import './Hubpage.css';
 
-/*!!!uigg
-const React = require('react');
-const { useState, useEffect } = require('react');
-const { Select, InputNumber } = require('antd');
-const axios = require('axios');
-const { read, utils } = require('xlsx');
-const { useNavigate } = require('react-router-dom');
-require('./Hubpage.css');
-*/
-
 const { Option } = Select;
-const teamTitle = "Which team do you support";
-const supportTitle = "How much do you want your team represented";
+const teamTitle = "Which team do you support?";
+const supportTitle = "How much do you want your team represented?";
 const formTitle = "How important is recent form?";
 const ppgTitle = "Efficiency - How important is points per game?";
 const ppmTitle = "Looking for good value? How important is points per million?";
@@ -50,7 +40,7 @@ const Hubpage = () => {
   }, [selectedTeam]);
 
   const [teamOptions, setTeamOptions] = useState([]);
-  //const [userNumber, setUserNumber] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleOptionChange = (option, comboBoxName) => {
     setSelectedOptions(prevOptions => ({
@@ -109,11 +99,13 @@ const Hubpage = () => {
   }, []);
 
   const handleRequest = () => {
+    setLoading(true);
     // Check if budget is valid
     const budget = parseFloat(selectedOptions.budget);
     if (isNaN(budget) || budget < 0) {
       // Display an error message or take appropriate action
       console.error('Invalid budget');
+      setLoading(false);
       return;
     }
 
@@ -128,6 +120,7 @@ const Hubpage = () => {
       .then(response => {
         // Handle the response from the server if needed
         console.log(response.data.result);
+        setLoading(false);
 
         // Wait for a short delay to allow the server to create the Excel file
         setTimeout(() => {
@@ -138,6 +131,7 @@ const Hubpage = () => {
       .catch(error => {
         // Handle any errors that occur during the request
         console.error(error);
+        setLoading(false);
       });
   };
 
@@ -150,7 +144,7 @@ const Hubpage = () => {
   return (
     <div className='hubpage-container'>
       <h1>What matters to you?</h1>
-      <p>Welcome to the new page content.</p>
+      <p>Your selections wil go into our algorithm to work out the right players for you.</p>
       <div className='hubpage-form'>
         <div className='form-row'>
           <Select
@@ -160,7 +154,7 @@ const Hubpage = () => {
             value={selectedOptions.team || teamTitle}
           >
             <Option value={teamTitle} disabled>
-              {teamTitle}
+              <strong>{teamTitle}</strong>
             </Option>
             {teamOptions.map(team => (
               <Option key={team} value={team}>
@@ -177,13 +171,13 @@ const Hubpage = () => {
             value={selectedOptions.teamSupport || supportTitle}
           >
             <Option value={supportTitle} disabled>
-              {supportTitle}
+              <strong>{supportTitle}</strong>
             </Option>
-            <Option value='0.01'>{selectedTeam ? `I don't care about ${selectedTeam}` : "YOUR TEAM's not my top priority"}</Option>
-            <Option value='0.4'>{selectedTeam ? `${selectedTeam} aren't my top priority` : "YOUR TEAM's not my top priority"}</Option>
-            <Option value='0.6'>{selectedTeam ? `Seeing the ${selectedTeam} options would be nice` : "Seeing the YOUR TEAM options would be nice"}</Option>
-            <Option value='0.8'>{selectedTeam ? `${selectedTeam} are almost as important as winning` : "They're YOUR TEAM almost as important as winning"}</Option>
-            <Option value='1'>{selectedTeam ? `${selectedTeam} are in my fantasy DNA` : "YOUR TEAM are in my fantasy DNA"}</Option>
+            <Option value='0.01'>{selectedTeam ? `I don't care about ${selectedTeam}` : "MY TEAM don't matter"}</Option>
+            <Option value='0.4'>{selectedTeam ? `${selectedTeam} aren't my top priority` : "MY TEAM aren't not my top priority"}</Option>
+            <Option value='0.6'>{selectedTeam ? `Seeing the ${selectedTeam} options would be nice` : "Seeing the MY TEAM options would be nice"}</Option>
+            <Option value='0.8'>{selectedTeam ? `${selectedTeam} are almost as important as winning` : "MY TEAM are almost as important as winning"}</Option>
+            <Option value='1'>{selectedTeam ? `${selectedTeam} are in my fantasy DNA` : "MY TEAM are in my fantasy DNA"}</Option>
           </Select>
         </div>
         <div className='form-row'>
@@ -194,7 +188,7 @@ const Hubpage = () => {
             value={selectedOptions.form || formTitle}
           >
             <Option value={formTitle} disabled>
-              {formTitle}
+              <strong>{formTitle}</strong>
             </Option>
             <Option value='0.2'>I don't care</Option>
             <Option value='0.4'>Long-term results come first</Option>
@@ -213,7 +207,7 @@ const Hubpage = () => {
             value={selectedOptions.efficiency || ppgTitle}
           >
             <Option value={ppgTitle} disabled>
-              {ppgTitle}
+              <strong>{ppgTitle}</strong>
             </Option>
             <Option value='0.2'>I don't care</Option>
             <Option value='0.4'>The main thing is their total score</Option>
@@ -230,7 +224,7 @@ const Hubpage = () => {
             value={selectedOptions.value || ppmTitle}
           >
             <Option value={ppmTitle} disabled>
-              {ppmTitle}
+              <strong>{ppmTitle}</strong>
             </Option>
             <Option value='0.2'>Money is no object</Option>
             <Option value='0.4'>I'm usually willing to spend for the best</Option>
@@ -247,13 +241,13 @@ const Hubpage = () => {
             value={selectedOptions.differential || differentialTitle}
           >
             <Option value={differentialTitle} disabled>
-              {differentialTitle}
+              <strong>{differentialTitle}</strong>
             </Option>
-            <Option value='0.2'>I don't care</Option>
-            <Option value='0.4'>I care a bit</Option>
-            <Option value='0.6'>I care medium</Option>
-            <Option value='0.8'>I care a lot</Option>
-            <Option value='1'>It's the most important thing to me</Option>
+            <Option value='0.2'>I don't care who has them</Option>
+            <Option value='0.4'>I'm not too fussed</Option>
+            <Option value='0.6'>Differentials can be a bonus</Option>
+            <Option value='0.8'>The rarer the better</Option>
+            <Option value='1'>I only want players no one's heard of</Option>
           </Select>
         </div>
         <div className='form-row'>
@@ -264,7 +258,7 @@ const Hubpage = () => {
             value={selectedOptions.position || positionTitle}
           >
             <Option value={positionTitle} disabled>
-              {positionTitle}
+              <strong>{positionTitle}</strong>
             </Option>
             <Option value='ANY'>Any Position</Option>
             <Option value='GK'>Goalkeeper</Option>
@@ -289,9 +283,12 @@ const Hubpage = () => {
         <button className='hubpage-button' onClick={handleRequest}>
           Crunch the numbers
         </button>
-        <button className='hubpage-button' onClick={handleNextPage}>
+        </div>
+        <div>
+        <button className='hubpage-button' onClick={handleNextPage} disabled={loading}>
           See the results
         </button>
+        <p> </p>
       </div>
     </div>
   );

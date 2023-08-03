@@ -7,7 +7,7 @@ import './Hubpage.css';
 
 
 const Home = () => {
-  const editableText = `\n Click the above button to ensure you're updated dated \n \n \n When you're ready, \n choose from the range of options \nto get a table of players perfect \nfor your squad.`;
+  const editableText = `\n Click the above button to ensure you're updated \n \n \n When you're ready, \n choose from the range of options \nto get a table of players perfect \nfor your squad.`;
   const navigate = useNavigate();
 
   const goToHubPage = () => {
@@ -39,6 +39,7 @@ const Home = () => {
     <button className='hubpage-button' onClick={goToHubPage}>
       Pick your preferences
     </button>
+    <p> </p>
   </div>
 </div>
   );
