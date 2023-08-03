@@ -1,0 +1,9 @@
+/* results.css */
+.vertical-line-row td:last-child span {
+    border-right: none; /* Remove vertical line from the last column cells */
+  }
+  
+  .vertical-line-row:nth-child() td {
+    border-left: 1px solid #ddd; /* Add vertical line to even row cells */
+  }
+

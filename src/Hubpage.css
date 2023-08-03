@@ -1,0 +1,22 @@
+.hubpage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.hubpage-form .form-row {
+  margin-bottom:30px; /* Adjust the spacing value as needed */
+}
+
+.center-align-input .ant-input-number-input {
+  text-align: center;
+}
