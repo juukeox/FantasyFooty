@@ -179,11 +179,11 @@ const Hubpage = () => {
             <Option value={supportTitle} disabled>
               {supportTitle}
             </Option>
-            <Option value='0.01'>{selectedTeam ? `${selectedTeam}'s not my top priority` : "YOUR TEAM's not my top priority"}</Option>
-            <Option value='0.4'>{selectedTeam ? `${selectedTeam}'s not my top priority` : "YOUR TEAM's not my top priority"}</Option>
+            <Option value='0.01'>{selectedTeam ? `I don't care about ${selectedTeam}` : "YOUR TEAM's not my top priority"}</Option>
+            <Option value='0.4'>{selectedTeam ? `${selectedTeam} aren't my top priority` : "YOUR TEAM's not my top priority"}</Option>
             <Option value='0.6'>{selectedTeam ? `Seeing the ${selectedTeam} options would be nice` : "Seeing the YOUR TEAM options would be nice"}</Option>
-            <Option value='0.8'>{selectedTeam ? `They're ${selectedTeam} almost as important as winning` : "They're YOUR TEAM almost as important as winning"}</Option>
-            <Option value='1'>{selectedTeam ? `They're ${selectedTeam} in my fantasy DNA` : "They're YOUR TEAM in my fantasy DNA"}</Option>
+            <Option value='0.8'>{selectedTeam ? `${selectedTeam} are almost as important as winning` : "They're YOUR TEAM almost as important as winning"}</Option>
+            <Option value='1'>{selectedTeam ? `${selectedTeam} are in my fantasy DNA` : "They're YOUR TEAM in my fantasy DNA"}</Option>
           </Select>
         </div>
         <div className='form-row'>
@@ -201,7 +201,7 @@ const Hubpage = () => {
             <Option value='0.6'>A mixture is the best approach</Option>
             <Option value='0.8'>I expect good recent performances</Option>
             <Option value='1'>
-              <strong>They better be on FIRE</strong>
+              They better be on<strong> FIRE</strong>
             </Option>
           </Select>
         </div>
@@ -287,10 +287,10 @@ const Hubpage = () => {
       </div>
       <div className='hubpage-buttons'>
         <button className='hubpage-button' onClick={handleRequest}>
-          Request
+          Crunch the numbers
         </button>
         <button className='hubpage-button' onClick={handleNextPage}>
-          Next Page
+          See the results
         </button>
       </div>
     </div>

@@ -20,3 +20,24 @@
 .center-align-input .ant-input-number-input {
   text-align: center;
 }
+
+/* Styles for hubpage-button */
+.hubpage-button {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adjust this value to control the space between buttons */
+  margin-top: 20px; /* Add some top margin for spacing */
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* On hover, change button background color */
+.hubpage-button:hover {
+  background-color: #45a049;
+}

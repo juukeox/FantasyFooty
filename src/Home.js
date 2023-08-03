@@ -5,8 +5,9 @@ import { read, utils } from 'xlsx';
 import { useNavigate } from 'react-router-dom';
 import './Hubpage.css';
 
+
 const Home = () => {
-  const editableText = `Welcome.`;
+  const editableText = `\n Click the above button to ensure you're updated dated \n \n \n When you're ready, \n choose from the range of options \nto get a table of players perfect \nfor your squad.`;
   const navigate = useNavigate();
 
   const goToHubPage = () => {
@@ -24,20 +25,22 @@ const Home = () => {
   };
 
   return (
-    <div className='hubpage-container'>
-      <h1>Welcome to the Hub Page</h1>
-      <div className='hubpage-buttons'>
-        <button className='hubpage-button' onClick={runTable}>
-          Request
-        </button>
-        <button className='hubpage-button' onClick={goToHubPage}>
-          Next Page
-        </button>
-      </div>
-      <pre className='hubpage-text'>
-        {editableText}
-      </pre>
-    </div>
+<div className='hubpage-container'>
+  <h1>WELCOME TO YOUR<br/> FANTASY FOOTBALL HUB!</h1>
+  <div className='hubpage-buttons'>
+    <button className='hubpage-button' onClick={runTable}>
+      Get newest data
+    </button>
+  </div>
+  <pre className='hubpage-text'>
+    <strong>{editableText}</strong>
+  </pre>
+  <div className='hubpage-buttons'>
+    <button className='hubpage-button' onClick={goToHubPage}>
+      Pick your preferences
+    </button>
+  </div>
+</div>
   );
 };
 
